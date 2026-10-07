@@ -1,6 +1,6 @@
 # Chính sách quyền riêng tư và trang xóa tài khoản UNI
 
-Trạng thái: **bản nháp, chưa công bố, chưa được Google Play duyệt**.
+Trạng thái: **chưa công bố; còn thông tin lưu/xóa dữ liệu cần hoàn thiện**.
 
 Hai trang HTML độc lập, không có JavaScript, font ngoài, quảng cáo hoặc công cụ
 phân tích. Nội dung được cập nhật ngày 07/10/2026 và đối chiếu với luồng xóa
@@ -30,9 +30,8 @@ Thay tất cả các mục sau trên cả hai trang bằng thông tin thực:
 | `[CHINH_SACH_LUU_VA_XOA_SAO_LUU]` | Có sao lưu hay không, thời gian hết hạn/xóa, cách xử lý dữ liệu đã xóa khi khôi phục. Không hứa số ngày chưa được triển khai. |
 | `[CHINH_SACH_XOA_HO_SO_FIREBASE]` | Cách xử lý bản ghi Firebase Authentication, thời hạn và trường hợp tiếp tục giữ để phục vụ tài khoản HHA còn hoạt động. |
 
-Chỉ bỏ khối `<aside class="draft">` trên cả hai trang sau khi các thông tin và
-quy trình này đã được xác nhận. Cập nhật ngày ở đầu chính sách nếu công bố sau
-ngày soạn bản nháp.
+Thông báo soạn thảo nội bộ đã được bỏ khỏi hai trang HTML. Cập nhật ngày ở
+đầu chính sách theo thời điểm áp dụng nội dung đã hoàn thiện.
 
 ## Các điểm cần xác minh từ mã hiện tại
 
