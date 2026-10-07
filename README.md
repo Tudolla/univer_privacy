@@ -3,13 +3,21 @@
 Trạng thái: **bản nháp, chưa công bố, chưa được Google Play duyệt**.
 
 Hai trang HTML độc lập, không có JavaScript, font ngoài, quảng cáo hoặc công cụ
-phân tích. Nội dung được đối chiếu với mã Flutter/Phoenix hiện tại ngày
-06/10/2026. Việc này không xác minh cấu hình Firebase, bản sao lưu hoặc triển
+phân tích. Nội dung được cập nhật ngày 07/10/2026 và đối chiếu với luồng xóa
+tài khoản Flutter/Phoenix. Việc này không xác minh cấu hình Firebase, bản sao lưu hoặc triển
 khai production. Không dùng các trang còn placeholder để nộp Google Play.
 
 - [index.html](index.html): Chính sách quyền riêng tư.
 - [delete-account.html](delete-account.html): hướng dẫn gửi yêu cầu xóa bằng
   email, không buộc người dùng cài lại app.
+
+## Thông tin đã cập nhật
+
+- Email hỗ trợ, quyền riêng tư và yêu cầu xóa: **eduino.info@gmail.com**.
+- Thời hạn xử lý yêu cầu xóa: **1 tuần (7 ngày) sau khi xác minh quyền sở hữu**;
+  trả kết quả qua email. Mốc bắt đầu cần được chủ ứng dụng xác nhận.
+- Nhà phát triển trên hai trang: **EDO UNI**, theo nội dung đã có trong trang
+  xóa tài khoản; cần đối chiếu với tên thực tế trên Google Play.
 
 ## Thông tin cần hoàn thiện trước khi công bố
 
@@ -17,10 +25,7 @@ Thay tất cả các mục sau trên cả hai trang bằng thông tin thực:
 
 | Placeholder | Nội dung cần xác nhận |
 | --- | --- |
-| `[TEN_NHA_PHAT_TRIEN]` | Tên nhà phát triển/đơn vị vận hành đúng với Store listing. |
-| `[EMAIL_HO_TRO]` | Email thực có người theo dõi và thực hiện yêu cầu dữ liệu. Kiểm tra cả liên kết `mailto:`. |
 | `[NGAY_CO_HIEU_LUC]` | Ngày bắt đầu áp dụng chính sách đã hoàn thiện. |
-| `[THOI_HAN_XU_LY_YEU_CAU]` | Thời hạn xử lý thực tế, tính sau xác minh quyền sở hữu. Google không quy định một số ngày duy nhất cho mọi app; chọn theo khả năng vận hành và nghĩa vụ áp dụng. |
 | `[CHINH_SACH_LUU_NHAT_KY_VA_HO_TRO]` | Loại dữ liệu, thời hạn lưu và lý do nếu còn dữ liệu sau khi xóa tài khoản. Xác nhận cả nhật ký của nhà cung cấp. |
 | `[CHINH_SACH_LUU_VA_XOA_SAO_LUU]` | Có sao lưu hay không, thời gian hết hạn/xóa, cách xử lý dữ liệu đã xóa khi khôi phục. Không hứa số ngày chưa được triển khai. |
 | `[CHINH_SACH_XOA_HO_SO_FIREBASE]` | Cách xử lý bản ghi Firebase Authentication, thời hạn và trường hợp tiếp tục giữ để phục vụ tài khoản HHA còn hoạt động. |
@@ -35,9 +40,9 @@ ngày soạn bản nháp.
    yêu cầu có link hoặc nội dung chính sách trong app, ngoài URL ở Play Console.
    Cần gắn URL đã công bố vào vị trí dễ tìm, kể cả trước khi đăng nhập.
 2. **Xóa dữ liệu xác thực:** nút Xóa tài khoản gọi
-   [`DELETE /uni/me`](../../lib/screen/login/repository/auth_api_client.dart),
+   `DELETE /api/uni/me` (mã app: `lib/screen/login/repository/auth_api_client.dart`),
    sau đó xóa phiên cục bộ và đăng xuất Google/Firebase. Luồng
-   [`Accounts.delete_uni_account/1`](../../../high_hha/lib/high_hha/accounts.ex)
+   `Accounts.delete_uni_account/1` (mã backend: `lib/high_hha/accounts.ex`)
    xóa dữ liệu UNI và giữ định danh chung nếu còn membership của app khác.
    Chưa thấy lệnh xóa bản ghi Firebase Authentication trong luồng này.
    Đăng xuất Firebase không phải xóa hồ sơ xác thực. Cần có quy trình xóa tại
@@ -57,18 +62,18 @@ ngày soạn bản nháp.
 
 ## Đăng lên GitHub Pages
 
-Nên tạo repository công khai riêng, ví dụ `edo-uni-privacy`, chứa **chỉ** hai
-trang HTML này và các tài liệu công khai cần thiết. Không cần công khai source
-app; không đưa keystore, key.properties hoặc thông tin production vào repo đó.
+Repository hiện tại: [Tudolla/univer_privacy](https://github.com/Tudolla/univer_privacy).
+Hai trang HTML nằm ở thư mục gốc; `.nojekyll` giúp GitHub Pages phục vụ HTML
+tĩnh trực tiếp. Repository này chỉ chứa tài liệu công khai; không đưa source
+app, keystore, key.properties hoặc thông tin production vào đây.
 
-1. Sau khi hoàn thiện nội dung, chép `index.html` và `delete-account.html` vào
-   thư mục gốc của repository mới. Có thể thêm file `.nojekyll` trống để phục vụ
-   HTML tĩnh trực tiếp. Không cần chép README vận hành này lên trang chính sách.
+1. Sau khi hoàn thiện các mục còn thiếu, commit và push `index.html`,
+   `delete-account.html`, `.nojekyll` và tài liệu vào branch `main` của repo này.
 2. Trong GitHub chọn **Settings → Pages → Deploy from a branch**, chọn branch
    `main`, thư mục `/(root)`, rồi Save.
 3. Chờ GitHub báo đã deploy; mở hai URL bằng cửa sổ ẩn danh, không đăng nhập:
-   - Privacy policy: `https://<github-user>.github.io/edo-uni-privacy/`
-   - Account deletion: `https://<github-user>.github.io/edo-uni-privacy/delete-account.html`
+   - Privacy policy: `https://tudolla.github.io/univer_privacy/`
+   - Account deletion: `https://tudolla.github.io/univer_privacy/delete-account.html`
 4. Kiểm tra HTTPS, đọc được trên điện thoại, không yêu cầu đăng nhập, không
    giới hạn địa lý, các email và liên kết hoạt động, không còn placeholder.
 5. Điền URL chính sách và URL xóa tài khoản vào đúng các mục ở Play Console.
@@ -76,6 +81,9 @@ app; không đưa keystore, key.properties hoặc thông tin production vào rep
 
 Không cần dùng PDF, Google Docs có quyền chỉnh sửa hoặc URL của trang source
 trên GitHub. Dùng URL của **GitHub Pages đã hoạt động**.
+
+Kiểm tra ngày 07/10/2026: cả hai URL dự kiến trả về HTTP 404, chưa dùng để nộp.
+Kiểm tra lại sau khi triển khai; trạng thái này có thể thay đổi.
 
 ## Đối chiếu Data safety trước khi nộp
 
